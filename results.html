@@ -37,10 +37,6 @@
     <div class="data-entry">
       <h3>📝 Record New Data</h3>
       <form id="dataForm" class="data-form">
-        <div class="form-group">
-          <label for="participantId">Participant ID:</label>
-          <input type="text" id="participantId" name="participantId" required>
-        </div>
 
         <div class="form-group">
           <label for="musicEra">Music Era:</label>
@@ -64,14 +60,29 @@
           <input type="number" id="duration" name="duration" min="1" max="60" required>
         </div>
 
+        <div class="form-group">
+          <h4>📊 Physiological Measurements</h4>
+        </div>
+
         <div class="form-row">
           <div class="form-group">
-            <label for="heartRate">Heart Rate (BPM):</label>
-            <input type="number" id="heartRate" name="heartRate" min="40" max="200" required>
+            <label for="heartRateBefore">Heart Rate Before (BPM):</label>
+            <input type="number" id="heartRateBefore" name="heartRateBefore" min="40" max="200" required>
           </div>
           <div class="form-group">
-            <label for="bloodPressure">Blood Pressure (mmHg):</label>
-            <input type="text" id="bloodPressure" name="bloodPressure" placeholder="120/80" required>
+            <label for="heartRateAfter">Heart Rate After (BPM):</label>
+            <input type="number" id="heartRateAfter" name="heartRateAfter" min="40" max="200" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="bloodPressureBefore">Blood Pressure Before (mmHg):</label>
+            <input type="text" id="bloodPressureBefore" name="bloodPressureBefore" placeholder="120/80" required>
+          </div>
+          <div class="form-group">
+            <label for="bloodPressureAfter">Blood Pressure After (mmHg):</label>
+            <input type="text" id="bloodPressureAfter" name="bloodPressureAfter" placeholder="120/80" required>
           </div>
         </div>
 
@@ -122,12 +133,13 @@
           <thead>
             <tr>
               <th>Date</th>
-              <th>Participant</th>
               <th>Era</th>
               <th>Song</th>
               <th>Duration</th>
-              <th>Heart Rate</th>
-              <th>BP</th>
+              <th>HR Before</th>
+              <th>HR After</th>
+              <th>BP Before</th>
+              <th>BP After</th>
               <th>Emotion</th>
               <th>Energy</th>
               <th>Focus</th>

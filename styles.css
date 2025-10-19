@@ -498,6 +498,17 @@ body {
   margin-top: 0.5rem;
 }
 
+.form-group h4 {
+  color: var(--indigo);
+  font-size: 1.3rem;
+  margin: 1rem 0 0.5rem 0;
+  text-align: center;
+  background: linear-gradient(135deg, rgba(200, 182, 255, 0.1), rgba(168, 208, 230, 0.1));
+  padding: 1rem;
+  border-radius: 10px;
+  border: 2px solid rgba(200, 182, 255, 0.2);
+}
+
 .btn-secondary {
   background: var(--blue);
   color: var(--white);

@@ -45,12 +45,13 @@ function handleFormSubmit(e) {
     const dataEntry = {
         id: Date.now(),
         timestamp: new Date().toLocaleString(),
-        participantId: formData.get('participantId'),
         musicEra: formData.get('musicEra'),
         songTitle: formData.get('songTitle'),
         duration: parseInt(formData.get('duration')),
-        heartRate: parseInt(formData.get('heartRate')),
-        bloodPressure: formData.get('bloodPressure'),
+        heartRateBefore: parseInt(formData.get('heartRateBefore')),
+        heartRateAfter: parseInt(formData.get('heartRateAfter')),
+        bloodPressureBefore: formData.get('bloodPressureBefore'),
+        bloodPressureAfter: formData.get('bloodPressureAfter'),
         emotionalState: parseInt(formData.get('emotionalState')),
         energyLevel: parseInt(formData.get('energyLevel')),
         focusLevel: parseInt(formData.get('focusLevel')),
@@ -97,7 +98,7 @@ function updateDataDisplay() {
     tbody.innerHTML = '';
     
     if (filteredData.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="11" class="no-data">No data recorded yet</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="12" class="no-data">No data recorded yet</td></tr>';
         return;
     }
     
@@ -105,12 +106,13 @@ function updateDataDisplay() {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>${entry.timestamp}</td>
-            <td>${entry.participantId}</td>
             <td>${entry.musicEra}</td>
             <td>${entry.songTitle}</td>
             <td>${entry.duration} min</td>
-            <td>${entry.heartRate} BPM</td>
-            <td>${entry.bloodPressure}</td>
+            <td>${entry.heartRateBefore} BPM</td>
+            <td>${entry.heartRateAfter} BPM</td>
+            <td>${entry.bloodPressureBefore}</td>
+            <td>${entry.bloodPressureAfter}</td>
             <td>${entry.emotionalState}/10</td>
             <td>${entry.energyLevel}/10</td>
             <td>${entry.focusLevel}/10</td>
@@ -136,9 +138,10 @@ function updateSummaryStats() {
     // Total records
     document.getElementById('totalRecords').textContent = researchData.length;
     
-    // Average heart rate
-    const avgHR = Math.round(researchData.reduce((sum, entry) => sum + entry.heartRate, 0) / researchData.length);
-    document.getElementById('avgHeartRate').textContent = avgHR + ' BPM';
+    // Average heart rate (before and after)
+    const avgHRBefore = Math.round(researchData.reduce((sum, entry) => sum + entry.heartRateBefore, 0) / researchData.length);
+    const avgHRAfter = Math.round(researchData.reduce((sum, entry) => sum + entry.heartRateAfter, 0) / researchData.length);
+    document.getElementById('avgHeartRate').textContent = `${avgHRBefore} → ${avgHRAfter} BPM`;
     
     // Most popular era
     const eraCounts = {};
@@ -160,20 +163,22 @@ function exportData() {
     }
     
     // Convert to CSV
-    const headers = ['Timestamp', 'Participant ID', 'Music Era', 'Song Title', 'Duration (min)', 
-                    'Heart Rate (BPM)', 'Blood Pressure', 'Emotional State', 'Energy Level', 
-                    'Focus Level', 'Notes'];
+    const headers = ['Timestamp', 'Music Era', 'Song Title', 'Duration (min)', 
+                    'Heart Rate Before (BPM)', 'Heart Rate After (BPM)', 
+                    'Blood Pressure Before', 'Blood Pressure After',
+                    'Emotional State', 'Energy Level', 'Focus Level', 'Notes'];
     
     const csvContent = [
         headers.join(','),
         ...researchData.map(entry => [
             entry.timestamp,
-            entry.participantId,
             entry.musicEra,
             `"${entry.songTitle}"`,
             entry.duration,
-            entry.heartRate,
-            entry.bloodPressure,
+            entry.heartRateBefore,
+            entry.heartRateAfter,
+            entry.bloodPressureBefore,
+            entry.bloodPressureAfter,
             entry.emotionalState,
             entry.energyLevel,
             entry.focusLevel,
