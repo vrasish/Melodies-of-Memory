@@ -167,7 +167,8 @@ body {
 
 /* Override for full-page sections */
 .section.about,
-.section.contact {
+.section.contact,
+.section.results {
   max-width: none;
   margin: 0;
   padding: 0;
@@ -413,11 +414,14 @@ body {
 .results {
   background: linear-gradient(135deg, rgba(200, 182, 255, 0.1), rgba(168, 208, 230, 0.1));
   border-radius: 30px;
-  margin: 2rem;
+  margin: 1rem;
   padding: 4rem;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
   min-height: calc(100vh - 120px);
-  width: calc(100% - 4rem);
+  width: calc(100% - 2rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .data-entry {
