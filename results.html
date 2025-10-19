@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Results & Data - Melodies of Memory</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- 🧭 NAVIGATION BAR -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <a href="home.html">
+          <img src="images/logo.png" alt="Melodies of Memory Logo" class="logo-img">
+          <span class="logo-text">Melodies of Memory</span>
+        </a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="music.html">Our Music</a></li>
+        <li><a href="results.html" class="active">Results & Data</a></li>
+        <li><a href="about.html">About Me</a></li>
+        <li><a href="contact.html">Contact Info</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- 📊 RESULTS & DATA SECTION -->
+  <section class="section results">
+    <h2>Research Results & Data Collection</h2>
+    <p>Track and analyze the physiological and emotional responses to different musical eras.</p>
+
+    <!-- Data Entry Form -->
+    <div class="data-entry">
+      <h3>📝 Record New Data</h3>
+      <form id="dataForm" class="data-form">
+        <div class="form-group">
+          <label for="participantId">Participant ID:</label>
+          <input type="text" id="participantId" name="participantId" required>
+        </div>
+
+        <div class="form-group">
+          <label for="musicEra">Music Era:</label>
+          <select id="musicEra" name="musicEra" required>
+            <option value="">Select Era</option>
+            <option value="1900s-1930s">1900s – 1930s (Jazz/Ragtime)</option>
+            <option value="1940s-1960s">1940s – 1960s (Swing/Rock)</option>
+            <option value="1970s-1980s">1970s – 1980s (Disco/Synth)</option>
+            <option value="1990s-2000s">1990s – 2000s (Pop/Alternative)</option>
+            <option value="2010s-2020s">2010s – 2020s (Electronic/Lo-fi)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="songTitle">Song Title:</label>
+          <input type="text" id="songTitle" name="songTitle" required>
+        </div>
+
+        <div class="form-group">
+          <label for="duration">Listening Duration (minutes):</label>
+          <input type="number" id="duration" name="duration" min="1" max="60" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="heartRate">Heart Rate (BPM):</label>
+            <input type="number" id="heartRate" name="heartRate" min="40" max="200" required>
+          </div>
+          <div class="form-group">
+            <label for="bloodPressure">Blood Pressure (mmHg):</label>
+            <input type="text" id="bloodPressure" name="bloodPressure" placeholder="120/80" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="emotionalState">Emotional State (1-10):</label>
+          <input type="range" id="emotionalState" name="emotionalState" min="1" max="10" value="5">
+          <span id="emotionalValue">5</span>
+        </div>
+
+        <div class="form-group">
+          <label for="energyLevel">Energy Level (1-10):</label>
+          <input type="range" id="energyLevel" name="energyLevel" min="1" max="10" value="5">
+          <span id="energyValue">5</span>
+        </div>
+
+        <div class="form-group">
+          <label for="focusLevel">Focus Level (1-10):</label>
+          <input type="range" id="focusLevel" name="focusLevel" min="1" max="10" value="5">
+          <span id="focusValue">5</span>
+        </div>
+
+        <div class="form-group">
+          <label for="notes">Additional Notes:</label>
+          <textarea id="notes" name="notes" rows="3" placeholder="Any observations about the music's effect..."></textarea>
+        </div>
+
+        <button type="submit" class="btn">Record Data</button>
+      </form>
+    </div>
+
+    <!-- Data Display -->
+    <div class="data-display">
+      <h3>📈 Collected Data</h3>
+      <div class="data-filters">
+        <select id="filterEra">
+          <option value="">All Eras</option>
+          <option value="1900s-1930s">1900s – 1930s</option>
+          <option value="1940s-1960s">1940s – 1960s</option>
+          <option value="1970s-1980s">1970s – 1980s</option>
+          <option value="1990s-2000s">1990s – 2000s</option>
+          <option value="2010s-2020s">2010s – 2020s</option>
+        </select>
+        <button id="exportData" class="btn-secondary">Export Data</button>
+      </div>
+      
+      <div class="data-table-container">
+        <table id="dataTable" class="data-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Participant</th>
+              <th>Era</th>
+              <th>Song</th>
+              <th>Duration</th>
+              <th>Heart Rate</th>
+              <th>BP</th>
+              <th>Emotion</th>
+              <th>Energy</th>
+              <th>Focus</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody id="dataTableBody">
+            <!-- Data will be populated here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Summary Statistics -->
+    <div class="data-summary">
+      <h3>📊 Summary Statistics</h3>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h4>Total Records</h4>
+          <span id="totalRecords">0</span>
+        </div>
+        <div class="stat-card">
+          <h4>Average Heart Rate</h4>
+          <span id="avgHeartRate">--</span>
+        </div>
+        <div class="stat-card">
+          <h4>Most Popular Era</h4>
+          <span id="popularEra">--</span>
+        </div>
+        <div class="stat-card">
+          <h4>Average Emotional State</h4>
+          <span id="avgEmotion">--</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Melodies of Memory | Where Sound Meets Science</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="data-script.js"></script>
+</body>
+</html>
