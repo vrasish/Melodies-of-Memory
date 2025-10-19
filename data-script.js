@@ -23,6 +23,10 @@ function initializeDataPage() {
     // Set up export button
     const exportBtn = document.getElementById('exportData');
     exportBtn.addEventListener('click', exportData);
+
+    // Set up clear data button
+    const clearBtn = document.getElementById('clearData');
+    clearBtn.addEventListener('click', clearAllData);
 }
 
 function setupRangeSliders() {
@@ -198,6 +202,29 @@ function exportData() {
     window.URL.revokeObjectURL(url);
     
     showNotification('Data exported successfully!', 'success');
+}
+
+function clearAllData() {
+    if (researchData.length === 0) {
+        showNotification('No data to clear', 'warning');
+        return;
+    }
+    
+    // Confirm before clearing
+    if (confirm('Are you sure you want to clear ALL research data? This action cannot be undone.')) {
+        // Clear the data array
+        researchData = [];
+        
+        // Clear localStorage
+        localStorage.removeItem('melodiesData');
+        
+        // Update display
+        updateDataDisplay();
+        updateSummaryStats();
+        
+        // Show success message
+        showNotification('All data cleared successfully!', 'success');
+    }
 }
 
 function showNotification(message, type) {
