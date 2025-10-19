@@ -49,6 +49,7 @@ function handleFormSubmit(e) {
     const dataEntry = {
         id: Date.now(),
         timestamp: new Date().toLocaleString(),
+        patientNumber: formData.get('patientNumber'),
         musicEra: formData.get('musicEra'),
         songTitle: formData.get('songTitle'),
         duration: parseInt(formData.get('duration')),
@@ -102,7 +103,7 @@ function updateDataDisplay() {
     tbody.innerHTML = '';
     
     if (filteredData.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="12" class="no-data">No data recorded yet</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="14" class="no-data">No data recorded yet</td></tr>';
         return;
     }
     
@@ -110,6 +111,7 @@ function updateDataDisplay() {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>${entry.timestamp}</td>
+            <td>${entry.patientNumber}</td>
             <td>${entry.musicEra}</td>
             <td>${entry.songTitle}</td>
             <td>${entry.duration} min</td>
@@ -121,6 +123,7 @@ function updateDataDisplay() {
             <td>${entry.energyLevel}/10</td>
             <td>${entry.focusLevel}/10</td>
             <td>${entry.notes || '--'}</td>
+            <td><button class="btn-delete" onclick="deleteRow(${entry.id})">Delete</button></td>
         `;
         tbody.appendChild(row);
     });
@@ -167,7 +170,7 @@ function exportData() {
     }
     
     // Convert to CSV
-    const headers = ['Timestamp', 'Music Era', 'Song Title', 'Duration (min)', 
+    const headers = ['Timestamp', 'Patient Number', 'Music Era', 'Song Title', 'Duration (min)', 
                     'Heart Rate Before (BPM)', 'Heart Rate After (BPM)', 
                     'Blood Pressure Before', 'Blood Pressure After',
                     'Emotional State', 'Energy Level', 'Focus Level', 'Notes'];
@@ -176,6 +179,7 @@ function exportData() {
         headers.join(','),
         ...researchData.map(entry => [
             entry.timestamp,
+            entry.patientNumber,
             entry.musicEra,
             `"${entry.songTitle}"`,
             entry.duration,
@@ -202,6 +206,31 @@ function exportData() {
     window.URL.revokeObjectURL(url);
     
     showNotification('Data exported successfully!', 'success');
+}
+
+function deleteRow(entryId) {
+    // Find the entry to get patient info for confirmation
+    const entry = researchData.find(e => e.id === entryId);
+    if (!entry) {
+        showNotification('Entry not found', 'warning');
+        return;
+    }
+    
+    // Confirm before deleting
+    if (confirm(`Are you sure you want to delete the entry for Patient #${entry.patientNumber} (${entry.songTitle})? This action cannot be undone.`)) {
+        // Remove the entry from the array
+        researchData = researchData.filter(e => e.id !== entryId);
+        
+        // Save to localStorage
+        localStorage.setItem('melodiesData', JSON.stringify(researchData));
+        
+        // Update display
+        updateDataDisplay();
+        updateSummaryStats();
+        
+        // Show success message
+        showNotification(`Entry for Patient #${entry.patientNumber} deleted successfully!`, 'success');
+    }
 }
 
 function clearAllData() {
