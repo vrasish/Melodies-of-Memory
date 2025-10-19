@@ -120,30 +120,6 @@ body {
   padding: 0 2rem;
 }
 
-.hero-logo {
-  margin-bottom: 2rem;
-  display: flex;
-  justify-content: center;
-}
-
-.hero-logo-img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  animation: float 3s ease-in-out infinite;
-}
-
-.hero-logo-img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-}
 
 .hero h1 {
   font-size: 3.5rem;
