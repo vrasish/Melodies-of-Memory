@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Research Blog - Melodies of Memory</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- 🧭 NAVIGATION BAR -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <a href="home.html">
+          <img src="images/logo.png" alt="Melodies of Memory Logo" class="logo-img">
+          <span class="logo-text">Melodies of Memory</span>
+        </a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="music.html">Our Music</a></li>
+        <li><a href="results.html">Results & Data</a></li>
+        <li><a href="blog.html" class="active">Research Blog</a></li>
+        <li><a href="about.html">About Me</a></li>
+        <li><a href="contact.html">Contact Info</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- 📝 RESEARCH BLOG SECTION -->
+  <section class="section blog">
+    <h2>Research Blog</h2>
+    <p>Weekly reflections on my journey exploring the connection between music, memory, and healing.</p>
+
+    <!-- New Post Form -->
+    <div class="blog-form-container">
+      <h3>📝 Add New Reflection</h3>
+      <form id="blogForm" class="blog-form">
+        <div class="form-group">
+          <label for="postTitle">Reflection Title:</label>
+          <input type="text" id="postTitle" name="postTitle" placeholder="e.g., Week 1: Initial Observations" required>
+        </div>
+
+        <div class="form-group">
+          <label for="postDate">Date:</label>
+          <input type="date" id="postDate" name="postDate" required>
+        </div>
+
+        <div class="form-group">
+          <label for="postWeek">Week Number:</label>
+          <input type="number" id="postWeek" name="postWeek" min="1" max="52" placeholder="1" required>
+        </div>
+
+        <div class="form-group">
+          <label for="postContent">Reflection Content:</label>
+          <textarea id="postContent" name="postContent" rows="10" placeholder="Share your thoughts, observations, challenges, and discoveries from this week's research..." required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="postTags">Tags (optional):</label>
+          <input type="text" id="postTags" name="postTags" placeholder="e.g., data collection, patient feedback, music therapy, neuroscience">
+        </div>
+
+        <button type="submit" class="btn">Publish Reflection</button>
+      </form>
+    </div>
+
+    <!-- Blog Posts Display -->
+    <div class="blog-posts">
+      <h3>📚 Weekly Reflections</h3>
+      <div id="blogPostsContainer">
+        <!-- Blog posts will be dynamically added here -->
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Melodies of Memory | Where Sound Meets Science</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="blog-script.js"></script>
+</body>
+</html>
