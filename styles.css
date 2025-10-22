@@ -17,6 +17,8 @@ body {
   background-color: var(--white);
   color: var(--indigo);
   line-height: 1.6;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 /* --- NAVBAR --- */
@@ -200,6 +202,10 @@ body {
   border-radius: 25px;
   backdrop-filter: blur(15px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  word-wrap: break-word;
 }
 
 .mission-content h2 {
@@ -214,6 +220,9 @@ body {
   font-size: 1rem;
   line-height: 1.6;
   text-align: left;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 /* --- MUSIC GRID --- */
@@ -970,6 +979,43 @@ footer {
   padding: 0.5rem;
   background: none;
   border: none;
+  z-index: 1001;
+}
+
+/* Force mobile menu on screens smaller than 900px */
+@media (max-width: 900px) {
+  .mobile-menu-toggle {
+    display: flex !important;
+  }
+  
+  .nav-links {
+    display: none !important;
+  }
+  
+  .nav-links.active {
+    display: flex !important;
+    flex-direction: column;
+    width: 100%;
+    background: linear-gradient(135deg, var(--lavender), var(--blue));
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 1rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 20px 20px;
+    z-index: 1000;
+    margin-top: 0.5rem;
+  }
+  
+  .navbar {
+    flex-wrap: wrap;
+    position: relative;
+  }
+  
+  .mobile-menu-toggle {
+    order: 2;
+    margin-left: auto;
+  }
 }
 
 .mobile-menu-toggle span {
@@ -1078,6 +1124,7 @@ footer {
   .navbar {
     flex-wrap: wrap;
     padding: 1rem;
+    position: relative;
   }
   
   .logo-text {
@@ -1090,11 +1137,13 @@ footer {
   }
   
   .mobile-menu-toggle {
-    display: flex;
+    display: flex !important;
+    order: 2;
+    margin-left: auto;
   }
   
   .nav-links {
-    display: none;
+    display: none !important;
     flex-direction: column;
     width: 100%;
     background: linear-gradient(135deg, var(--lavender), var(--blue));
@@ -1105,10 +1154,11 @@ footer {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     border-radius: 0 0 20px 20px;
     z-index: 1000;
+    margin-top: 0.5rem;
   }
   
   .nav-links.active {
-    display: flex;
+    display: flex !important;
   }
   
   .nav-links a {
@@ -1117,6 +1167,7 @@ footer {
     border-radius: 15px;
     margin: 0.25rem 0;
     font-size: 1.1rem;
+    white-space: nowrap;
   }
   
   .hero {
@@ -1167,11 +1218,17 @@ footer {
   
   .mission-content {
     padding: 1.5rem;
+    max-width: 100%;
+    overflow-x: hidden;
+    word-wrap: break-word;
   }
   
   .mission-content p {
     font-size: 1rem;
     line-height: 1.5;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
   }
   
   .contact-info {
@@ -1289,11 +1346,17 @@ footer {
   
   .mission-content {
     padding: 1rem;
+    max-width: 100%;
+    overflow-x: hidden;
+    word-wrap: break-word;
   }
   
   .mission-content p {
     font-size: 0.9rem;
     line-height: 1.4;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
   }
   
   .contact-item {
