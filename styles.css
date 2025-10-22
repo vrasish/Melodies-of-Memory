@@ -961,27 +961,195 @@ footer {
 }
 
 /* --- RESPONSIVE DESIGN --- */
-@media (max-width: 768px) {
+
+/* Mobile Navigation Toggle */
+.mobile-menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 0.5rem;
+  background: none;
+  border: none;
+}
+
+.mobile-menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background: var(--indigo);
+  margin: 3px 0;
+  transition: 0.3s;
+  border-radius: 2px;
+}
+
+.mobile-menu-toggle.active span:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* Large Desktop (1200px+) */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .hero h1 {
+    font-size: 4rem;
+  }
+  
+  .section h2 {
+    font-size: 3rem;
+  }
+}
+
+/* Desktop (992px - 1199px) */
+@media (max-width: 1199px) {
+  .hero h1 {
+    font-size: 3.5rem;
+  }
+  
+  .section h2 {
+    font-size: 2.8rem;
+  }
+}
+
+/* Tablet (768px - 991px) */
+@media (max-width: 991px) {
   .navbar {
-    flex-direction: column;
-    gap: 1rem;
+    padding: 1rem 1.5rem;
+  }
+  
+  .hero h1 {
+    font-size: 3rem;
+  }
+  
+  .hero-content {
+    padding: 0 2rem;
+  }
+  
+  .section h2 {
+    font-size: 2.5rem;
+  }
+  
+  .era-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  
+  .mission-content {
+    padding: 2rem;
+  }
+  
+  .mission-content p {
+    font-size: 1.1rem;
+  }
+  
+  .contact-info {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .data-form {
+    padding: 2rem;
+  }
+  
+  .data-table {
+    font-size: 0.9rem;
+  }
+  
+  .blog-form {
+    padding: 2rem;
+  }
+  
+  .faq {
+    padding: 3rem;
+  }
+}
+
+/* Mobile Large (481px - 767px) */
+@media (max-width: 767px) {
+  .navbar {
+    flex-wrap: wrap;
     padding: 1rem;
   }
   
+  .logo-text {
+    font-size: 1.2rem;
+  }
+  
+  .logo-img {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .mobile-menu-toggle {
+    display: flex;
+  }
+  
   .nav-links {
-    gap: 1rem;
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: linear-gradient(135deg, var(--lavender), var(--blue));
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 1rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 20px 20px;
+    z-index: 1000;
+  }
+  
+  .nav-links.active {
+    display: flex;
+  }
+  
+  .nav-links a {
+    padding: 1rem;
+    text-align: center;
+    border-radius: 15px;
+    margin: 0.25rem 0;
+    font-size: 1.1rem;
+  }
+  
+  .hero {
+    height: 80vh;
+    padding: 2rem 1rem;
   }
   
   .hero h1 {
     font-size: 2.5rem;
+    margin-bottom: 1rem;
   }
   
   .hero-content {
     padding: 0 1rem;
   }
   
+  .tagline {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .btn {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+  }
+  
   .section {
     padding: 2rem 1rem;
+  }
+  
+  .section h2 {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
   }
   
   .era-grid {
@@ -989,21 +1157,288 @@ footer {
     gap: 1.5rem;
   }
   
-  .science, .about {
-    margin: 1rem;
+  .era {
+    padding: 1.5rem;
+  }
+  
+  .era h3 {
+    font-size: 1.4rem;
+  }
+  
+  .mission-content {
+    padding: 1.5rem;
+  }
+  
+  .mission-content p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  .contact-info {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .contact-item {
+    padding: 1.5rem;
+  }
+  
+  .contact-item h3 {
+    font-size: 1.3rem;
+  }
+  
+  .data-form {
+    padding: 1.5rem;
+  }
+  
+  .form-row {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .data-table {
+    font-size: 0.8rem;
+    overflow-x: auto;
+  }
+  
+  .data-table th,
+  .data-table td {
+    padding: 0.5rem 0.3rem;
+  }
+  
+  .blog-form {
+    padding: 1.5rem;
+  }
+  
+  .blog-post {
+    padding: 1.5rem;
+  }
+  
+  .faq {
+    padding: 2rem;
+  }
+  
+  .safety-statement {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .safety-statement h3 {
+    font-size: 1.3rem;
+  }
+  
+  .faq-item {
+    padding: 1.5rem;
+  }
+  
+  .faq-item h3 {
+    font-size: 1.3rem;
   }
 }
 
+/* Mobile Small (320px - 480px) */
 @media (max-width: 480px) {
+  .navbar {
+    padding: 0.75rem;
+  }
+  
+  .logo-text {
+    font-size: 1rem;
+  }
+  
+  .logo-img {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .hero {
+    height: 70vh;
+    padding: 1rem 0.5rem;
+  }
+  
   .hero h1 {
     font-size: 2rem;
+    line-height: 1.2;
   }
   
   .tagline {
     font-size: 1rem;
   }
   
+  .btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .section {
+    padding: 1.5rem 0.5rem;
+  }
+  
   .section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  .era {
+    padding: 1rem;
+  }
+  
+  .era h3 {
+    font-size: 1.2rem;
+  }
+  
+  .mission-content {
+    padding: 1rem;
+  }
+  
+  .mission-content p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+  
+  .contact-item {
+    padding: 1rem;
+  }
+  
+  .contact-item h3 {
+    font-size: 1.2rem;
+  }
+  
+  .data-form {
+    padding: 1rem;
+  }
+  
+  .data-form h3 {
+    font-size: 1.3rem;
+  }
+  
+  .form-group label {
+    font-size: 0.9rem;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+  
+  .data-table {
+    font-size: 0.7rem;
+  }
+  
+  .data-table th,
+  .data-table td {
+    padding: 0.3rem 0.2rem;
+  }
+  
+  .btn {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
+  }
+  
+  .btn-delete {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.7rem;
+  }
+  
+  .blog-form {
+    padding: 1rem;
+  }
+  
+  .blog-post {
+    padding: 1rem;
+  }
+  
+  .blog-post h4 {
+    font-size: 1.2rem;
+  }
+  
+  .faq {
+    padding: 1rem;
+  }
+  
+  .safety-statement {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .safety-statement h3 {
+    font-size: 1.1rem;
+  }
+  
+  .faq-item {
+    padding: 1rem;
+  }
+  
+  .faq-item h3 {
+    font-size: 1.2rem;
+  }
+  
+  .faq-item p {
+    font-size: 0.9rem;
+  }
+}
+
+/* Extra Small Mobile (max-width: 320px) */
+@media (max-width: 320px) {
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+  
+  .section h2 {
+    font-size: 1.6rem;
+  }
+  
+  .data-table {
+    font-size: 0.6rem;
+  }
+  
+  .btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Landscape Mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    height: 100vh;
+    padding: 1rem;
+  }
+  
+  .hero h1 {
     font-size: 2rem;
+  }
+  
+  .tagline {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+  .btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .nav-links a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    min-height: 44px;
+  }
+  
+  .btn-delete {
+    min-height: 36px;
+    min-width: 36px;
   }
 }
