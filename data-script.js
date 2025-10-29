@@ -17,8 +17,8 @@ function initializeDataPage() {
     setupRangeSliders();
 
     // Set up filters
-    const filterEra = document.getElementById('filterEra');
-    filterEra.addEventListener('change', filterData);
+    const filterGenre = document.getElementById('filterGenre');
+    filterGenre.addEventListener('change', filterData);
 
     // Set up export button
     const exportBtn = document.getElementById('exportData');
@@ -50,7 +50,7 @@ function handleFormSubmit(e) {
         id: Date.now(),
         timestamp: new Date().toLocaleString(),
         patientNumber: formData.get('patientNumber'),
-        musicEra: formData.get('musicEra'),
+        musicGenre: formData.get('musicGenre'),
         songTitle: formData.get('songTitle'),
         duration: parseInt(formData.get('duration')),
         heartRateBefore: parseInt(formData.get('heartRateBefore')),
@@ -93,11 +93,11 @@ function resetRangeSliders() {
 
 function updateDataDisplay() {
     const tbody = document.getElementById('dataTableBody');
-    const filterEra = document.getElementById('filterEra').value;
+    const filterGenre = document.getElementById('filterGenre').value;
     
     let filteredData = researchData;
-    if (filterEra) {
-        filteredData = researchData.filter(entry => entry.musicEra === filterEra);
+    if (filterGenre) {
+        filteredData = researchData.filter(entry => entry.musicGenre === filterGenre);
     }
     
     tbody.innerHTML = '';
@@ -112,7 +112,7 @@ function updateDataDisplay() {
         row.innerHTML = `
             <td>${entry.timestamp}</td>
             <td>${entry.patientNumber}</td>
-            <td>${entry.musicEra}</td>
+            <td>${entry.musicGenre}</td>
             <td>${entry.songTitle}</td>
             <td>${entry.duration} min</td>
             <td>${entry.heartRateBefore} BPM</td>
@@ -137,7 +137,7 @@ function updateSummaryStats() {
     if (researchData.length === 0) {
         document.getElementById('totalRecords').textContent = '0';
         document.getElementById('avgHeartRate').textContent = '--';
-        document.getElementById('popularEra').textContent = '--';
+        document.getElementById('popularGenre').textContent = '--';
         document.getElementById('avgEmotion').textContent = '--';
         return;
     }
@@ -150,13 +150,13 @@ function updateSummaryStats() {
     const avgHRAfter = Math.round(researchData.reduce((sum, entry) => sum + entry.heartRateAfter, 0) / researchData.length);
     document.getElementById('avgHeartRate').textContent = `${avgHRBefore} → ${avgHRAfter} BPM`;
     
-    // Most popular era
-    const eraCounts = {};
+    // Most popular genre
+    const genreCounts = {};
     researchData.forEach(entry => {
-        eraCounts[entry.musicEra] = (eraCounts[entry.musicEra] || 0) + 1;
+        genreCounts[entry.musicGenre] = (genreCounts[entry.musicGenre] || 0) + 1;
     });
-    const popularEra = Object.keys(eraCounts).reduce((a, b) => eraCounts[a] > eraCounts[b] ? a : b);
-    document.getElementById('popularEra').textContent = popularEra;
+    const popularGenre = Object.keys(genreCounts).reduce((a, b) => genreCounts[a] > genreCounts[b] ? a : b);
+    document.getElementById('popularGenre').textContent = popularGenre;
     
     // Average emotional state
     const avgEmotion = (researchData.reduce((sum, entry) => sum + entry.emotionalState, 0) / researchData.length).toFixed(1);
@@ -170,7 +170,7 @@ function exportData() {
     }
     
     // Convert to CSV
-    const headers = ['Timestamp', 'Patient Number', 'Music Era', 'Song Title', 'Duration (min)', 
+    const headers = ['Timestamp', 'Patient Number', 'Music Genre', 'Song Title', 'Duration (min)', 
                     'Heart Rate Before (BPM)', 'Heart Rate After (BPM)', 
                     'Blood Pressure Before', 'Blood Pressure After',
                     'Emotional State', 'Energy Level', 'Focus Level', 'Notes'];
@@ -180,7 +180,7 @@ function exportData() {
         ...researchData.map(entry => [
             entry.timestamp,
             entry.patientNumber,
-            entry.musicEra,
+            entry.musicGenre,
             `"${entry.songTitle}"`,
             entry.duration,
             entry.heartRateBefore,

@@ -50,14 +50,15 @@
         </div>
 
         <div class="form-group">
-          <label for="musicEra">Music Era:</label>
-          <select id="musicEra" name="musicEra" required>
-            <option value="">Select Era</option>
-            <option value="1900s-1930s">1900s – 1930s (Jazz/Ragtime)</option>
-            <option value="1940s-1960s">1940s – 1960s (Swing/Rock)</option>
-            <option value="1970s-1980s">1970s – 1980s (Disco/Synth)</option>
-            <option value="1990s-2000s">1990s – 2000s (Pop/Alternative)</option>
-            <option value="2010s-2020s">2010s – 2020s (Electronic/Lo-fi)</option>
+          <label for="musicGenre">Music Genre:</label>
+          <select id="musicGenre" name="musicGenre" required>
+            <option value="">Select Genre</option>
+            <option value="Pop">Pop</option>
+            <option value="Jazz">Jazz</option>
+            <option value="Opera">Opera</option>
+            <option value="Disney">Disney</option>
+            <option value="Acoustic">Acoustic</option>
+            <option value="Gospel">Gospel</option>
           </select>
         </div>
 
@@ -128,13 +129,14 @@
     <div class="data-display">
       <h3>📈 Collected Data</h3>
       <div class="data-filters">
-        <select id="filterEra">
-          <option value="">All Eras</option>
-          <option value="1900s-1930s">1900s – 1930s</option>
-          <option value="1940s-1960s">1940s – 1960s</option>
-          <option value="1970s-1980s">1970s – 1980s</option>
-          <option value="1990s-2000s">1990s – 2000s</option>
-          <option value="2010s-2020s">2010s – 2020s</option>
+        <select id="filterGenre">
+          <option value="">All Genres</option>
+          <option value="Pop">Pop</option>
+          <option value="Jazz">Jazz</option>
+          <option value="Opera">Opera</option>
+          <option value="Disney">Disney</option>
+          <option value="Acoustic">Acoustic</option>
+          <option value="Gospel">Gospel</option>
         </select>
         <button id="exportData" class="btn-secondary">Export Data</button>
         <button id="clearData" class="btn-clear">Clear All Data</button>
@@ -146,7 +148,7 @@
             <tr>
               <th>Date</th>
               <th>Patient #</th>
-              <th>Era</th>
+              <th>Genre</th>
               <th>Song</th>
               <th>Duration</th>
               <th>HR Before</th>
@@ -180,8 +182,8 @@
           <span id="avgHeartRate">--</span>
         </div>
         <div class="stat-card">
-          <h4>Most Popular Era</h4>
-          <span id="popularEra">--</span>
+          <h4>Most Popular Genre</h4>
+          <span id="popularGenre">--</span>
         </div>
         <div class="stat-card">
           <h4>Average Emotional State</h4>
